@@ -2,9 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from home import views
 urlpatterns = [
+    path("register/", views.registerPage, name='registerPage'),
+    path("login/", views.loginPage, name='loginPage'),
     path("", views.dashboard, name='dashboard'),
     path("dashboard/", views.dashboard, name='dashboard'),
-    path("login/", views.login, name='login'),
+
     path("products/", views.products, name='products'),
 
     path("customers/<str:cid>/", views.customers, name='customers'),

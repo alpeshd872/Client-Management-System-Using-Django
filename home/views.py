@@ -2,10 +2,25 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from .filters import OrderFilter
+from django .contrib.auth.forms import UserCreationForm
 
 
-def login(request):
-    return render(request, 'login.html')
+def loginPage(request):
+
+    context = {}
+    return render(request, 'login.html', context)
+
+
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'register.html', context)
 
 
 def products(request):
